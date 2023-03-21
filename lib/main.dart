@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:wanna_watch/themes/movies_theme.dart';
 
 import './data/movies_api_client.dart';
 import './data/network_movies_repository.dart';
 import './data/movies_repository.dart';
 
 import './screens/movies.dart';
+
+import './themes/movies_theme.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
