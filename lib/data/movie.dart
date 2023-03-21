@@ -6,14 +6,14 @@ class Movie {
   final String title;
   final String overview;
   final String posterPath;
-  final String releaseDate;
+  final String releaseYear;
 
   Movie({
     required this.id,
     required this.title,
     required this.overview,
     required this.posterPath,
-    required this.releaseDate,
+    required this.releaseYear,
   });
 
   factory Movie.fromResponse(MovieResponse response) {
@@ -27,7 +27,7 @@ class Movie {
       posterPath: response.posterPath != null
           ? '$moviesApiImagesURL${response.posterPath}'
           : '',
-      releaseDate: releaseYear,
+      releaseYear: releaseYear,
     );
   }
 }

@@ -30,7 +30,7 @@ class MovieListItemInfo extends StatelessWidget {
               height: 4,
             ),
             Text(
-              movie.releaseDate,
+              movie.releaseYear,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.bodyMedium,
