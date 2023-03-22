@@ -39,6 +39,7 @@ class _MoviesState extends State<MoviesScreen> {
       body: SafeArea(
         child: MovieList(
           moviesFuture: _moviesFuture,
+          moviesRepository: widget.moviesRepository,
         ),
       ),
     );

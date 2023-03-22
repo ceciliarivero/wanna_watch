@@ -1,21 +1,37 @@
 import 'package:flutter/material.dart';
 
 import '../../data/movie.dart';
+import '../../data/movies_repository.dart';
+
+import '../../screens/movie_screen.dart';
+
 import './movie_list_item_info.dart';
 import './movie_list_item_poster.dart';
 
 class MovieListItem extends StatelessWidget {
   final Movie movie;
+  final MoviesRepository moviesRepository;
 
   const MovieListItem({
     Key? key,
     required this.movie,
+    required this.moviesRepository,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MovieScreen(
+              id: movie.id,
+              moviesRepository: moviesRepository,
+            ),
+          ),
+        );
+      },
       child: Container(
         margin: const EdgeInsets.symmetric(
           horizontal: 20.0,
