@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class MovieListItemPoster extends StatelessWidget {
   final String imageUrl;
@@ -15,16 +16,18 @@ class MovieListItemPoster extends StatelessWidget {
         topLeft: Radius.circular(4.0),
         bottomLeft: Radius.circular(4.0),
       ),
-      child: Image.network(
-        imageUrl,
+      child: FadeInImage.memoryNetwork(
+        placeholder: kTransparentImage,
+        image: imageUrl,
+        alignment: Alignment.topCenter,
         width: 87,
         height: 130,
         fit: BoxFit.contain,
-        errorBuilder: (_, __, ___) {
+        imageErrorBuilder: (_, __, ___) {
           return Container(
             width: 87,
             height: 130,
-            color: Theme.of(context).secondaryHeaderColor,
+            color: Theme.of(context).primaryColor,
             child: Center(
               child: Text(
                 'Image not available',
@@ -34,6 +37,9 @@ class MovieListItemPoster extends StatelessWidget {
             ),
           );
         },
+        fadeInDuration: const Duration(
+          milliseconds: 300,
+        ),
       ),
     );
   }
