@@ -23,6 +23,8 @@ class MovieListItem extends StatelessWidget {
         ),
         child: Card(
           color: Theme.of(context).primaryColor,
+          shadowColor: Theme.of(context).primaryColorLight,
+          elevation: 30,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
