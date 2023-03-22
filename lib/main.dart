@@ -6,7 +6,7 @@ import './data/movies_api_client.dart';
 import './data/network_movies_repository.dart';
 import './data/movies_repository.dart';
 
-import './screens/movies.dart';
+import 'screens/movies_screen.dart';
 
 import './themes/movies_theme.dart';
 
@@ -42,7 +42,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Wanna Watch',
       theme: MoviesTheme().dark,
-      home: Movies(
+      home: MoviesScreen(
         moviesRepository: moviesRepository,
       ),
     );
