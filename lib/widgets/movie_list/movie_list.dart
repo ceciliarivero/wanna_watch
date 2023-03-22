@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../data/movie.dart';
+import '../shared/spinner.dart';
+import '../shared/error.dart';
 import './movie_list_item.dart';
 
 class MovieList extends StatelessWidget {
@@ -17,36 +19,20 @@ class MovieList extends StatelessWidget {
       future: moviesFuture,
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return Container(
-            color: Theme.of(context).primaryColor,
-            child: Center(
-              child: Text(
-                'Something went wrong, please try again later',
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-            ),
+          return const Error(
+            text: 'Something went wrong, please try again later.',
           );
         }
 
         if (!snapshot.hasData) {
-          return Center(
-            child: CircularProgressIndicator(
-              color: Theme.of(context).primaryColorLight,
-            ),
-          );
+          return const Spinner();
         }
 
         final movies = snapshot.data ?? [];
 
         if (movies.isEmpty) {
-          return Container(
-            color: Theme.of(context).primaryColor,
-            child: Center(
-              child: Text(
-                'No movies available',
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-            ),
+          return const Error(
+            text: 'No movies available',
           );
         }
 
