@@ -13,4 +13,10 @@ class NetworkMoviesRepository implements MoviesRepository {
 
     return response.map((r) => Movie.fromResponse(r)).toList();
   }
+
+  @override
+  Future<Movie> getMovie(int id) async {
+    final response = await _moviesApiClient.getMovie(id);
+    return Movie.fromResponse(response);
+  }
 }

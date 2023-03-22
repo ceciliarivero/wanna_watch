@@ -25,4 +25,12 @@ class MoviesApiClient {
         .map<MovieResponse>((item) => MovieResponse.fromJson(item))
         .toList();
   }
+
+  Future<MovieResponse> getMovie(int id) async {
+    final response = await _dio.get(
+      id.toString(),
+      queryParameters: {'api_key': _moviesApiKey, 'language': 'en-UK'},
+    );
+    return MovieResponse.fromJson(response.data);
+  }
 }
