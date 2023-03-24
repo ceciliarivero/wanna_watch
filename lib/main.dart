@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:dio/dio.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:wanna_watch/data/db_client.dart';
+
+import './firebase_options.dart';
 
 import './data/movies_api_client.dart';
-import './data/network_movies_repository.dart';
 import './data/movies_repository.dart';
+import './data/network_movies_repository.dart';
 
-import 'screens/movies_screen.dart';
+import './screens/movies_screen.dart';
 
 import './themes/movies_theme.dart';
 
@@ -16,13 +21,23 @@ void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
 
+  // Movies Api
   final moviesDio = Dio(
     BaseOptions(baseUrl: moviesApiBaseURL ?? ''),
   );
 
   final moviesApiClient = MoviesApiClient(moviesDio);
 
-  final moviesRepository = NetworkMoviesRepository(moviesApiClient);
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  // Watch List DB
+  final FirebaseFirestore dbInstance = FirebaseFirestore.instance;
+
+  final dbClient = DBClient(dbInstance);
+
+  final moviesRepository = NetworkMoviesRepository(moviesApiClient, dbClient);
 
   runApp(
     App(moviesRepository: moviesRepository),

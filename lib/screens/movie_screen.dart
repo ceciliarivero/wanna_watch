@@ -22,23 +22,38 @@ class MovieScreen extends StatefulWidget {
 }
 
 class _MovieDetailsState extends State<MovieScreen> {
-  Future<Movie>? _movieFuture;
+  late Future<Movie> _movieFuture;
+  late Future<List<Movie>> _watchListFuture;
 
   @override
   void initState() {
     super.initState();
+
+    _watchListFuture = widget.moviesRepository.getMoviesFromWatchList();
     _movieFuture = widget.moviesRepository.getMovie(widget.id);
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Movie>(
-      future: _movieFuture,
-      builder: (context, snapshot) {
-        final movie = snapshot.data;
+    return FutureBuilder<List<dynamic>>(
+      future: Future.wait([_watchListFuture, _movieFuture]),
+      builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
+        final List<Movie> watchList = snapshot.data?[0] ?? [];
+        final Movie? movie = snapshot.data?[1];
+        final Widget body;
 
-        Widget body =
-            movie == null ? const Spinner() : MovieDetails(movie: movie);
+        if (movie == null) {
+          body = const Spinner();
+        } else {
+          bool isAdded =
+              watchList.where((element) => element.id == movie.id).isNotEmpty;
+
+          body = MovieDetails(
+            moviesRepository: widget.moviesRepository,
+            movie: movie,
+            isAdded: isAdded,
+          );
+        }
 
         return Scaffold(
           appBar: AppBar(
