@@ -4,7 +4,7 @@ import '../../data/movie.dart';
 import '../../data/movies_repository.dart';
 
 import './movie_list_item.dart';
-import '../shared/error.dart';
+import '../shared/error_message.dart';
 import '../shared/spinner.dart';
 
 class MovieList extends StatelessWidget {
@@ -23,7 +23,7 @@ class MovieList extends StatelessWidget {
       future: moviesFuture,
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return const Error(
+          return const ErrorMessage(
             text: 'Something went wrong, please try again later.',
           );
         }
@@ -35,7 +35,7 @@ class MovieList extends StatelessWidget {
         final movies = snapshot.data ?? [];
 
         if (movies.isEmpty) {
-          return const Error(
+          return const ErrorMessage(
             text: 'No movies available',
           );
         }

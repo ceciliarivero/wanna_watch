@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-import '../shared/error.dart';
-
 class MovieBackdrop extends StatelessWidget {
   final String imageUrl;
 
@@ -25,7 +23,6 @@ class MovieBackdrop extends StatelessWidget {
       imageErrorBuilder: (_, __, ___) {
         return const SizedBox(
           height: 250,
-          child: Error(text: 'Image not available'),
         );
       },
     );

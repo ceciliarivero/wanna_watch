@@ -4,8 +4,8 @@ import '../data/movie.dart';
 import '../data/movies_repository.dart';
 
 import '../widgets/movie/movie_details.dart';
+import '../widgets/shared/error_message.dart';
 import '../widgets/shared/spinner.dart';
-import '../widgets/shared/error.dart';
 
 class MovieScreen extends StatefulWidget {
   final int id;
@@ -45,7 +45,7 @@ class _MovieDetailsState extends State<MovieScreen> {
             backgroundColor: Theme.of(context).primaryColor,
           ),
           body: snapshot.hasError
-              ? const Error(
+              ? const ErrorMessage(
                   text: 'Something went wrong, please try again later.',
                 )
               : body,
