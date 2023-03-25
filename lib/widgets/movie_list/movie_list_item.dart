@@ -31,9 +31,7 @@ class _MovieListItemState extends State<MovieListItem> {
   void initState() {
     super.initState();
 
-    setState(() {
-      _isAdded = widget.isAdded;
-    });
+    _isAdded = widget.isAdded;
   }
 
   void _addMovieToWatchList(Movie movie) {

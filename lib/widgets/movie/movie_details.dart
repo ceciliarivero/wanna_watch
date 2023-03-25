@@ -33,9 +33,7 @@ class _MovieDetailsState extends State<MovieDetails> {
   void initState() {
     super.initState();
 
-    setState(() {
-      _isAdded = widget.isAdded;
-    });
+    _isAdded = widget.isAdded;
   }
 
   void _addMovie(Movie movie) {
