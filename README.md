@@ -1,16 +1,17 @@
-# wanna_watch
+# Wanna Watch
 
-A new Flutter project.
+This project is an app built using Flutter.
+It was built as an assignment of the "Flutter Devcamp Womens Special 2023".
+The purpose of it is to display movies fetched from a public API, and save movies to watch later in a Firestore database.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+You'll need to create a project in Firebase, use Firestore as database and follow the steps to configure Firestore in the project.
+You'll also need to create an .env file with the needed enviroment variables. You can find the needed variables in .env.example.
 
-A few resources to get you started if this is your first Flutter project:
+To start the app run:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```
+flutter pub get
+flutter run
+```
