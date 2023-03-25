@@ -29,7 +29,8 @@ class DBClient {
               .then(
                 (doc) => doc,
                 onError: (error) => Error.safeToString(error),
-              );
+              )
+              .then((value) => getMoviesFromWatchList());
         }
       },
       onError: (error) => Error.safeToString(error),
