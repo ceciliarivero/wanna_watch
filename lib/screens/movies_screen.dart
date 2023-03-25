@@ -18,12 +18,14 @@ class MoviesScreen extends StatefulWidget {
 }
 
 class _MoviesState extends State<MoviesScreen> {
-  Future<List<Movie>>? _moviesFuture;
+  late Future<List<Movie>> _watchListFuture;
+  late Future<List<Movie>> _moviesFuture;
 
   @override
   void initState() {
     super.initState();
 
+    _watchListFuture = widget.moviesRepository.getMoviesFromWatchList();
     _moviesFuture = widget.moviesRepository.getMovies();
 
   }
@@ -38,6 +40,7 @@ class _MoviesState extends State<MoviesScreen> {
       ),
       body: SafeArea(
         child: MovieList(
+          watchListFuture: _watchListFuture,
           moviesFuture: _moviesFuture,
           moviesRepository: widget.moviesRepository,
         ),

@@ -10,12 +10,16 @@ class MovieDetails extends StatefulWidget {
   final MoviesRepository moviesRepository;
   final Movie movie;
   final bool isAdded;
+  final Function addMovieToWatchList;
+  final Function removeMovieFromWatchList;
 
   const MovieDetails({
     super.key,
     required this.moviesRepository,
     required this.movie,
     required this.isAdded,
+    required this.addMovieToWatchList,
+    required this.removeMovieFromWatchList,
   });
 
   @override
@@ -34,16 +38,16 @@ class _MovieDetailsState extends State<MovieDetails> {
     });
   }
 
-  void addMovieToWatchList(Movie movie) {
-    widget.moviesRepository.addMovieToWatchList(movie);
+  void _addMovie(Movie movie) {
+    widget.addMovieToWatchList(movie);
 
     setState(() {
       _isAdded = true;
     });
   }
 
-  void removeMovieFromWatchList(int id) {
-    widget.moviesRepository.removeMovieFromWatchList(id);
+  void _removeMovie(int id) {
+    widget.removeMovieFromWatchList(id);
 
     setState(() {
       _isAdded = false;
@@ -60,8 +64,8 @@ class _MovieDetailsState extends State<MovieDetails> {
               moviesRepository: widget.moviesRepository,
               movie: widget.movie,
               isAdded: _isAdded,
-              addMovieToWatchList: addMovieToWatchList,
-              removeMovieFromWatchList: removeMovieFromWatchList,
+              addMovieToWatchList: _addMovie,
+              removeMovieFromWatchList: _removeMovie,
             ),
             MovieInfo(movie: widget.movie),
           ],

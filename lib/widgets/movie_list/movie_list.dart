@@ -8,20 +8,25 @@ import '../shared/error_message.dart';
 import '../shared/spinner.dart';
 
 class MovieList extends StatelessWidget {
-  final Future<List<Movie>>? moviesFuture;
+  final Future<List<Movie>> watchListFuture;
+  final Future<List<Movie>> moviesFuture;
   final MoviesRepository moviesRepository;
 
   const MovieList({
     super.key,
+    required this.watchListFuture,
     required this.moviesFuture,
     required this.moviesRepository,
   });
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Movie>>(
-      future: moviesFuture,
-      builder: (context, snapshot) {
+    return FutureBuilder<List<dynamic>>(
+      future: Future.wait([watchListFuture, moviesFuture]),
+      builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
+        final List<Movie> watchList = snapshot.data?[0] ?? [];
+        final List<Movie> movies = snapshot.data?[1] ?? [];
+
         if (snapshot.hasError) {
           return const ErrorMessage(
             text: 'Something went wrong, please try again later.',
@@ -31,8 +36,6 @@ class MovieList extends StatelessWidget {
         if (!snapshot.hasData) {
           return const Spinner();
         }
-
-        final movies = snapshot.data ?? [];
 
         if (movies.isEmpty) {
           return const ErrorMessage(
@@ -45,9 +48,14 @@ class MovieList extends StatelessWidget {
           child: ListView.builder(
             itemCount: movies.length,
             itemBuilder: (ctx, index) {
+              bool isAdded = watchList
+                  .where((element) => element.id == movies[index].id)
+                  .isNotEmpty;
+
               return MovieListItem(
                 movie: movies[index],
                 moviesRepository: moviesRepository,
+                isAdded: isAdded,
               );
             },
           ),

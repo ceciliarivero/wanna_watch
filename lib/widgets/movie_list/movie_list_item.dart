@@ -8,15 +8,49 @@ import '../../screens/movie_screen.dart';
 import './movie_list_item_info.dart';
 import './movie_list_item_poster.dart';
 
-class MovieListItem extends StatelessWidget {
+class MovieListItem extends StatefulWidget {
   final Movie movie;
   final MoviesRepository moviesRepository;
+  final bool isAdded;
 
   const MovieListItem({
     Key? key,
     required this.movie,
     required this.moviesRepository,
+    required this.isAdded,
   }) : super(key: key);
+
+  @override
+  State<MovieListItem> createState() => _MovieListItemState();
+}
+
+class _MovieListItemState extends State<MovieListItem> {
+  late bool _isAdded;
+
+  @override
+  void initState() {
+    super.initState();
+
+    setState(() {
+      _isAdded = widget.isAdded;
+    });
+  }
+
+  void _addMovieToWatchList(Movie movie) {
+    widget.moviesRepository.addMovieToWatchList(movie);
+
+    setState(() {
+      _isAdded = true;
+    });
+  }
+
+  void _removeMovieFromWatchList(int id) {
+    widget.moviesRepository.removeMovieFromWatchList(id);
+
+    setState(() {
+      _isAdded = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +60,11 @@ class MovieListItem extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => MovieScreen(
-              id: movie.id,
-              moviesRepository: moviesRepository,
+              id: widget.movie.id,
+              moviesRepository: widget.moviesRepository,
+              isAdded: _isAdded,
+              addMovieToWatchList: _addMovieToWatchList,
+              removeMovieFromWatchList: _removeMovieFromWatchList,
             ),
           ),
         );
@@ -44,9 +81,14 @@ class MovieListItem extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              MovieListItemPoster(imageUrl: movie.posterPath),
+              MovieListItemPoster(imageUrl: widget.movie.posterPath),
               Expanded(
-                child: MovieListItemInfo(movie: movie),
+                child: MovieListItemInfo(
+                  movie: widget.movie,
+                  isAdded: _isAdded,
+                  addMovieToWatchList: _addMovieToWatchList,
+                  removeMovieFromWatchList: _removeMovieFromWatchList,
+                ),
               ),
             ],
           ),

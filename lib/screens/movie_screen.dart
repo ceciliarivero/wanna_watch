@@ -10,11 +10,17 @@ import '../widgets/shared/spinner.dart';
 class MovieScreen extends StatefulWidget {
   final int id;
   final MoviesRepository moviesRepository;
+  final bool isAdded;
+  final Function addMovieToWatchList;
+  final Function removeMovieFromWatchList;
 
   const MovieScreen({
     super.key,
     required this.id,
     required this.moviesRepository,
+    required this.isAdded,
+    required this.addMovieToWatchList,
+    required this.removeMovieFromWatchList,
   });
 
   @override
@@ -23,35 +29,31 @@ class MovieScreen extends StatefulWidget {
 
 class _MovieDetailsState extends State<MovieScreen> {
   late Future<Movie> _movieFuture;
-  late Future<List<Movie>> _watchListFuture;
 
   @override
   void initState() {
     super.initState();
 
-    _watchListFuture = widget.moviesRepository.getMoviesFromWatchList();
     _movieFuture = widget.moviesRepository.getMovie(widget.id);
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<dynamic>>(
-      future: Future.wait([_watchListFuture, _movieFuture]),
-      builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
-        final List<Movie> watchList = snapshot.data?[0] ?? [];
-        final Movie? movie = snapshot.data?[1];
+    return FutureBuilder<Movie>(
+      future: _movieFuture,
+      builder: (context, snapshot) {
+        final Movie? movie = snapshot.data;
         final Widget body;
 
         if (movie == null) {
           body = const Spinner();
         } else {
-          bool isAdded =
-              watchList.where((element) => element.id == movie.id).isNotEmpty;
-
           body = MovieDetails(
             moviesRepository: widget.moviesRepository,
             movie: movie,
-            isAdded: isAdded,
+            isAdded: widget.isAdded,
+            addMovieToWatchList: widget.addMovieToWatchList,
+            removeMovieFromWatchList: widget.removeMovieFromWatchList,
           );
         }
 
