@@ -9,6 +9,8 @@ class MoviesTheme {
     textTheme: MoviesTextTheme().regular,
   );
 
+}
+
 class MoviesTextTheme {
   TextTheme regular = const TextTheme(
     displayLarge: TextStyle(
