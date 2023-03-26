@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-import './movie_response.dart';
+import '../mappers/movie_response.dart';
 
 class MoviesApiClient {
   final Dio _dio;

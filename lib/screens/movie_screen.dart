@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../data/movie.dart';
-import '../data/movies_repository.dart';
+import '../data/models/movie.dart';
+import '../data/services/movies_repository.dart';
 
 import '../widgets/movie/movie_details.dart';
 import '../widgets/shared/error_message.dart';

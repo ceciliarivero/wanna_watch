@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-import './movie_to_watch_request_body.dart';
-import './movie_to_watch_response.dart';
+import '../mappers/movie_to_watch_request_body.dart';
+import '../mappers/movie_to_watch_response.dart';
 
 class DBClient {
   final FirebaseFirestore _dbClient;

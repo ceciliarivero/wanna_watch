@@ -1,7 +1,7 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-import './movie_response.dart';
-import './movie_to_watch_response.dart';
+import '../mappers/movie_response.dart';
+import '../mappers/movie_to_watch_response.dart';
 
 class Movie {
   final int id;

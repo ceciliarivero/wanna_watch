@@ -1,6 +1,6 @@
 import './db_client.dart';
-import './movie.dart';
-import './movie_to_watch_request_body.dart';
+import '../models/movie.dart';
+import '../mappers/movie_to_watch_request_body.dart';
 import './movies_api_client.dart';
 
 class MoviesRepository {

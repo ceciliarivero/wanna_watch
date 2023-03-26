@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../data/movie.dart';
-import '../data/movies_repository.dart';
+import '../data/models/movie.dart';
+import '../data/services/movies_repository.dart';
 
 import '../widgets/movie_list/movie_list.dart';
 import '../widgets/movie_list/watch_list.dart';
@@ -29,7 +29,6 @@ class _MoviesState extends State<MoviesScreen> {
 
     _watchListFuture = widget.moviesRepository.getMoviesFromWatchList();
     _moviesFuture = widget.moviesRepository.getMovies();
-
   }
 
   void _onItemTapped(int index) {

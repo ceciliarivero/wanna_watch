@@ -3,12 +3,12 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:wanna_watch/data/db_client.dart';
 
 import './firebase_options.dart';
 
-import './data/movies_api_client.dart';
-import './data/movies_repository.dart';
+import './data/services/db_client.dart';
+import './data/services/movies_api_client.dart';
+import './data/services/movies_repository.dart';
 
 import './screens/movies_screen.dart';
 

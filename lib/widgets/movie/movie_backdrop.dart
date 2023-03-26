@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-import '../../data/movie.dart';
-import '../../data/movies_repository.dart';
+import '../../data/models/movie.dart';
+import '../../data/services/movies_repository.dart';
 
 import '../shared/error_message.dart';
 
