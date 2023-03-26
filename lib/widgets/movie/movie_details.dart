@@ -7,12 +7,6 @@ import './movie_backdrop.dart';
 import './movie_info.dart';
 
 class MovieDetails extends StatefulWidget {
-  final MoviesRepository moviesRepository;
-  final Movie movie;
-  final bool isAdded;
-  final Function addMovieToWatchList;
-  final Function removeMovieFromWatchList;
-
   const MovieDetails({
     super.key,
     required this.moviesRepository,
@@ -21,6 +15,12 @@ class MovieDetails extends StatefulWidget {
     required this.addMovieToWatchList,
     required this.removeMovieFromWatchList,
   });
+
+  final MoviesRepository moviesRepository;
+  final Movie movie;
+  final bool isAdded;
+  final Function addMovieToWatchList;
+  final Function removeMovieFromWatchList;
 
   @override
   State<MovieDetails> createState() => _MovieDetailsState();

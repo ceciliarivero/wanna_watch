@@ -7,12 +7,6 @@ import '../../data/services/movies_repository.dart';
 import '../shared/error_message.dart';
 
 class MovieBackdrop extends StatelessWidget {
-  final MoviesRepository moviesRepository;
-  final Movie movie;
-  final bool isAdded;
-  final Function addMovieToWatchList;
-  final Function removeMovieFromWatchList;
-
   const MovieBackdrop({
     super.key,
     required this.moviesRepository,
@@ -21,6 +15,12 @@ class MovieBackdrop extends StatelessWidget {
     required this.addMovieToWatchList,
     required this.removeMovieFromWatchList,
   });
+
+  final MoviesRepository moviesRepository;
+  final Movie movie;
+  final bool isAdded;
+  final Function addMovieToWatchList;
+  final Function removeMovieFromWatchList;
 
   @override
   Widget build(BuildContext context) {

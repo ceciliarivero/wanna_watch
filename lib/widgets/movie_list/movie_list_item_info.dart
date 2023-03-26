@@ -3,11 +3,6 @@ import 'package:flutter/material.dart';
 import '../../data/models/movie.dart';
 
 class MovieListItemInfo extends StatelessWidget {
-  final Movie movie;
-  final bool isAdded;
-  final Function addMovieToWatchList;
-  final Function removeMovieFromWatchList;
-
   const MovieListItemInfo({
     Key? key,
     required this.movie,
@@ -15,6 +10,11 @@ class MovieListItemInfo extends StatelessWidget {
     required this.addMovieToWatchList,
     required this.removeMovieFromWatchList,
   }) : super(key: key);
+
+  final Movie movie;
+  final bool isAdded;
+  final Function addMovieToWatchList;
+  final Function removeMovieFromWatchList;
 
   @override
   Widget build(BuildContext context) {

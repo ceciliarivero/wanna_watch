@@ -7,12 +7,12 @@ import '../widgets/movie_list/movie_list.dart';
 import '../widgets/movie_list/watch_list.dart';
 
 class MoviesScreen extends StatefulWidget {
-  final MoviesRepository moviesRepository;
-
   const MoviesScreen({
     super.key,
     required this.moviesRepository,
   });
+
+  final MoviesRepository moviesRepository;
 
   @override
   State<MoviesScreen> createState() => _MoviesState();

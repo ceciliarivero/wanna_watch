@@ -4,17 +4,6 @@ part 'movie_to_watch_response.g.dart';
 
 @JsonSerializable(createToJson: false)
 class MovieToWatchResponse {
-  final int? id;
-  final String? title;
-  final String? overview;
-  final String? posterPath;
-  final String? releaseDate;
-  final String? backdropPath;
-  final List<String>? genres;
-  final String? originalLanguage;
-  final String? originalTitle;
-  final List<String>? productionCountries;
-
   MovieToWatchResponse({
     required this.id,
     required this.title,
@@ -27,6 +16,17 @@ class MovieToWatchResponse {
     required this.originalTitle,
     required this.productionCountries,
   });
+
+  final int? id;
+  final String? title;
+  final String? overview;
+  final String? posterPath;
+  final String? releaseDate;
+  final String? backdropPath;
+  final List<String>? genres;
+  final String? originalLanguage;
+  final String? originalTitle;
+  final List<String>? productionCountries;
 
   factory MovieToWatchResponse.fromJson(Map<String, dynamic> json) =>
       _$MovieToWatchResponseFromJson(json);

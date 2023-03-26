@@ -9,16 +9,16 @@ import './movie_list_item_info.dart';
 import './movie_list_item_poster.dart';
 
 class MovieListItem extends StatefulWidget {
-  final Movie movie;
-  final MoviesRepository moviesRepository;
-  final bool isAdded;
-
   const MovieListItem({
     Key? key,
     required this.movie,
     required this.moviesRepository,
     required this.isAdded,
   }) : super(key: key);
+
+  final Movie movie;
+  final MoviesRepository moviesRepository;
+  final bool isAdded;
 
   @override
   State<MovieListItem> createState() => _MovieListItemState();

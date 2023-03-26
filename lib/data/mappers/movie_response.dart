@@ -4,6 +4,19 @@ part 'movie_response.g.dart';
 
 @JsonSerializable(createToJson: false)
 class MovieResponse {
+  MovieResponse({
+    required this.id,
+    required this.title,
+    required this.overview,
+    required this.posterPath,
+    required this.releaseDate,
+    required this.backdropPath,
+    required this.genres,
+    required this.originalLanguage,
+    required this.originalTitle,
+    required this.productionCountries,
+  });
+
   final int? id;
   final String? title;
   final String? overview;
@@ -20,19 +33,6 @@ class MovieResponse {
   final String? originalTitle;
   @JsonKey(name: 'production_countries')
   final List<Map<String, dynamic>>? productionCountries;
-
-  MovieResponse({
-    required this.id,
-    required this.title,
-    required this.overview,
-    required this.posterPath,
-    required this.releaseDate,
-    required this.backdropPath,
-    required this.genres,
-    required this.originalLanguage,
-    required this.originalTitle,
-    required this.productionCountries,
-  });
 
   factory MovieResponse.fromJson(Map<String, dynamic> json) =>
       _$MovieResponseFromJson(json);

@@ -8,12 +8,6 @@ import '../widgets/shared/error_message.dart';
 import '../widgets/shared/spinner.dart';
 
 class MovieScreen extends StatefulWidget {
-  final int id;
-  final MoviesRepository moviesRepository;
-  final bool isAdded;
-  final Function addMovieToWatchList;
-  final Function removeMovieFromWatchList;
-
   const MovieScreen({
     super.key,
     required this.id,
@@ -22,6 +16,12 @@ class MovieScreen extends StatefulWidget {
     required this.addMovieToWatchList,
     required this.removeMovieFromWatchList,
   });
+
+  final int id;
+  final MoviesRepository moviesRepository;
+  final bool isAdded;
+  final Function addMovieToWatchList;
+  final Function removeMovieFromWatchList;
 
   @override
   State<MovieScreen> createState() => _MovieDetailsState();

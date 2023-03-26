@@ -4,17 +4,6 @@ import '../mappers/movie_response.dart';
 import '../mappers/movie_to_watch_response.dart';
 
 class Movie {
-  final int id;
-  final String title;
-  final String overview;
-  final String posterPath;
-  final String releaseYear;
-  final String backdropPath;
-  final List<String> genres;
-  final String originalLanguage;
-  final String originalTitle;
-  final List<String> productionCountries;
-
   Movie({
     required this.id,
     required this.title,
@@ -27,6 +16,17 @@ class Movie {
     required this.originalTitle,
     required this.productionCountries,
   });
+
+  final int id;
+  final String title;
+  final String overview;
+  final String posterPath;
+  final String releaseYear;
+  final String backdropPath;
+  final List<String> genres;
+  final String originalLanguage;
+  final String originalTitle;
+  final List<String> productionCountries;
 
   factory Movie.fromResponse(MovieResponse response) {
     final moviesApiImagesURL = dotenv.env['MOVIES_API_IMAGES_URL'];

@@ -8,14 +8,14 @@ import '../shared/error_message.dart';
 import '../shared/spinner.dart';
 
 class WatchList extends StatefulWidget {
-  final Future<List<Movie>> watchListFuture;
-  final MoviesRepository moviesRepository;
-
   const WatchList({
     super.key,
     required this.watchListFuture,
     required this.moviesRepository,
   });
+
+  final Future<List<Movie>> watchListFuture;
+  final MoviesRepository moviesRepository;
 
   @override
   State<WatchList> createState() => _WatchListState();

@@ -5,10 +5,10 @@ import '../mappers/movie_to_watch_request_body.dart';
 import '../mappers/movie_to_watch_response.dart';
 
 class DBClient {
+  DBClient(this._dbClient);
+
   final FirebaseFirestore _dbClient;
   final moviesCollection = dotenv.env['WATCH_LIST_COLLECTION']!;
-
-  DBClient(this._dbClient);
 
   Future<void> addMovieToWatchList(MovieToWatchWrapperRequestBody movie) async {
     await _dbClient.collection(moviesCollection).add(movie.data.toJson());

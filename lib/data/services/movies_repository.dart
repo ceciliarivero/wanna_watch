@@ -4,13 +4,13 @@ import '../mappers/movie_to_watch_request_body.dart';
 import './movies_api_client.dart';
 
 class MoviesRepository {
-  final MoviesApiClient _moviesApiClient;
-  final DBClient _dbClient;
-
   MoviesRepository(
     this._moviesApiClient,
     this._dbClient,
   );
+
+  final MoviesApiClient _moviesApiClient;
+  final DBClient _dbClient;
 
   Future<List<Movie>> getMovies() async {
     final response = await _moviesApiClient.getMovies();

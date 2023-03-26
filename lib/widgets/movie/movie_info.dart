@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import '../../data/models/movie.dart';
 
 class MovieInfo extends StatelessWidget {
-  final Movie movie;
-
   const MovieInfo({
     super.key,
     required this.movie,
   });
+
+  final Movie movie;
 
   @override
   Widget build(BuildContext context) {

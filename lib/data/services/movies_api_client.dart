@@ -4,10 +4,10 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../mappers/movie_response.dart';
 
 class MoviesApiClient {
+  MoviesApiClient(this._dio);
+
   final Dio _dio;
   final String _moviesApiKey = dotenv.env['MOVIES_API_KEY'] ?? '';
-
-  MoviesApiClient(this._dio);
 
   Future<List<MovieResponse>> getMovies() async {
     final response = await _dio.get(

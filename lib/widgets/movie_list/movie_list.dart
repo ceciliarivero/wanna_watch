@@ -8,16 +8,16 @@ import '../shared/error_message.dart';
 import '../shared/spinner.dart';
 
 class MovieList extends StatelessWidget {
-  final Future<List<Movie>> watchListFuture;
-  final Future<List<Movie>> moviesFuture;
-  final MoviesRepository moviesRepository;
-
   const MovieList({
     super.key,
     required this.watchListFuture,
     required this.moviesFuture,
     required this.moviesRepository,
   });
+
+  final Future<List<Movie>> watchListFuture;
+  final Future<List<Movie>> moviesFuture;
+  final MoviesRepository moviesRepository;
 
   @override
   Widget build(BuildContext context) {
