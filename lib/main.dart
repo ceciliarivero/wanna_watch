@@ -9,7 +9,6 @@ import './firebase_options.dart';
 
 import './data/movies_api_client.dart';
 import './data/movies_repository.dart';
-import './data/network_movies_repository.dart';
 
 import './screens/movies_screen.dart';
 
@@ -37,7 +36,7 @@ void main() async {
 
   final dbClient = DBClient(dbInstance);
 
-  final moviesRepository = NetworkMoviesRepository(moviesApiClient, dbClient);
+  final moviesRepository = MoviesRepository(moviesApiClient, dbClient);
 
   runApp(
     App(moviesRepository: moviesRepository),
