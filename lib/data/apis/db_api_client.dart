@@ -4,25 +4,25 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../mappers/movie_to_watch_request_body.dart';
 import '../mappers/movie_to_watch_response.dart';
 
-class DBClient {
-  DBClient(this._dbClient);
+class DBApiClient {
+  DBApiClient(this._dbApiClient);
 
-  final FirebaseFirestore _dbClient;
+  final FirebaseFirestore _dbApiClient;
   final moviesCollection = dotenv.env['WATCH_LIST_COLLECTION']!;
 
   Future<void> addMovieToWatchList(MovieToWatchWrapperRequestBody movie) async {
-    await _dbClient.collection(moviesCollection).add(movie.data.toJson());
+    await _dbApiClient.collection(moviesCollection).add(movie.data.toJson());
   }
 
   Future<void> removeMovieFromWatchList(int id) async {
-    _dbClient
+    _dbApiClient
         .collection(moviesCollection)
         .where("id", isEqualTo: id)
         .get()
         .then(
       (querySnapshot) {
         for (var docSnapshot in querySnapshot.docs) {
-          _dbClient
+          _dbApiClient
               .collection(moviesCollection)
               .doc(docSnapshot.id)
               .delete()
@@ -38,7 +38,7 @@ class DBClient {
   }
 
   Future<List<MovieToWatchResponse>> getMoviesFromWatchList() async {
-    return _dbClient.collection(moviesCollection).get().then(
+    return _dbApiClient.collection(moviesCollection).get().then(
       (querySnapshot) {
         final items = (querySnapshot.docs);
 

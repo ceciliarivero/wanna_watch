@@ -6,7 +6,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import './firebase_options.dart';
 
-import './data/apis/db_client.dart';
+import 'data/apis/db_api_client.dart';
 import './data/apis/movies_api_client.dart';
 import './data/repositories/movies_repository.dart';
 
@@ -34,9 +34,9 @@ void main() async {
   // Watch List DB
   final FirebaseFirestore dbInstance = FirebaseFirestore.instance;
 
-  final dbClient = DBClient(dbInstance);
+  final dbApiClient = DBApiClient(dbInstance);
 
-  final moviesRepository = MoviesRepository(moviesApiClient, dbClient);
+  final moviesRepository = MoviesRepository(moviesApiClient, dbApiClient);
 
   runApp(
     App(moviesRepository: moviesRepository),

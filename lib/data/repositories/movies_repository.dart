@@ -1,4 +1,4 @@
-import '../apis/db_client.dart';
+import '../apis/db_api_client.dart';
 import '../apis/movies_api_client.dart';
 import '../mappers/movie_to_watch_request_body.dart';
 import '../models/movie.dart';
@@ -6,11 +6,11 @@ import '../models/movie.dart';
 class MoviesRepository {
   MoviesRepository(
     this._moviesApiClient,
-    this._dbClient,
+    this._dbApiClient,
   );
 
   final MoviesApiClient _moviesApiClient;
-  final DBClient _dbClient;
+  final DBApiClient _dbApiClient;
 
   Future<List<Movie>> getMovies() async {
     final response = await _moviesApiClient.getMovies();
@@ -38,15 +38,15 @@ class MoviesRepository {
         productionCountries: movie.productionCountries,
       ),
     );
-    await _dbClient.addMovieToWatchList(body);
+    await _dbApiClient.addMovieToWatchList(body);
   }
 
   Future<void> removeMovieFromWatchList(int id) async {
-    await _dbClient.removeMovieFromWatchList(id);
+    await _dbApiClient.removeMovieFromWatchList(id);
   }
 
   Future<List<Movie>> getMoviesFromWatchList() async {
-    final response = await _dbClient.getMoviesFromWatchList();
+    final response = await _dbApiClient.getMoviesFromWatchList();
 
     return response.map((r) => Movie.fromMovieToWatchResponse(r)).toList();
   }
