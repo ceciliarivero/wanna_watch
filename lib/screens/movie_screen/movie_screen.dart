@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../data/models/movie.dart';
-import '../data/services/movies_repository.dart';
+import '../../data/models/movie.dart';
+import '../../data/repositories/movies_repository.dart';
 
-import '../widgets/movie/movie_details.dart';
-import '../widgets/shared/error_message.dart';
-import '../widgets/shared/spinner.dart';
+import '../../shared_widgets/error_message.dart';
+import '../../shared_widgets/spinner.dart';
+import './widgets/movie_details.dart';
 
 class MovieScreen extends StatefulWidget {
   const MovieScreen({

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../data/models/movie.dart';
-import '../../data/services/movies_repository.dart';
+import '../../../data/models/movie.dart';
+import '../../../data/repositories/movies_repository.dart';
 
 import './movie_backdrop.dart';
 import './movie_info.dart';

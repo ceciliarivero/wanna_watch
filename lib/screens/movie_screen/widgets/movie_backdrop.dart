@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-import '../../data/models/movie.dart';
-import '../../data/services/movies_repository.dart';
+import '../../../data/models/movie.dart';
+import '../../../data/repositories/movies_repository.dart';
 
-import '../shared/error_message.dart';
+import '../../../shared_widgets/error_message.dart';
+
+import '../../../themes/design_system.dart';
 
 class MovieBackdrop extends StatelessWidget {
   const MovieBackdrop({
@@ -22,6 +24,8 @@ class MovieBackdrop extends StatelessWidget {
   final Function addMovieToWatchList;
   final Function removeMovieFromWatchList;
 
+  static const height = 250.0;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -33,12 +37,12 @@ class MovieBackdrop extends StatelessWidget {
           fadeInDuration: const Duration(
             milliseconds: 300,
           ),
-          height: 250,
+          height: height,
           fit: BoxFit.cover,
           alignment: Alignment.topCenter,
           imageErrorBuilder: (_, __, ___) {
             return const SizedBox(
-              height: 250,
+              height: height,
               child: ErrorMessage(text: 'Image not available'),
             );
           },
@@ -46,8 +50,8 @@ class MovieBackdrop extends StatelessWidget {
         Container(
           alignment: Alignment.bottomRight,
           padding: const EdgeInsets.only(
-            right: 20.0,
-            bottom: 10.0,
+            right: Insets.m,
+            bottom: Insets.xs,
           ),
           child: ElevatedButton(
             onPressed: () {

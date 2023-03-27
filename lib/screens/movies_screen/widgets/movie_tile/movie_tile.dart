@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:wanna_watch/themes/design_system.dart';
 
-import '../../data/models/movie.dart';
-import '../../data/services/movies_repository.dart';
+import '../../../../data/models/movie.dart';
+import '../../../../data/repositories/movies_repository.dart';
 
-import '../../screens/movie_screen.dart';
+import '../../../movie_screen/movie_screen.dart';
+import './movie_poster.dart';
+import './movie_tile_info.dart';
 
-import './movie_list_item_info.dart';
-import './movie_list_item_poster.dart';
-
-class MovieListItem extends StatefulWidget {
-  const MovieListItem({
+class MovieTile extends StatefulWidget {
+  const MovieTile({
     Key? key,
     required this.movie,
     required this.moviesRepository,
@@ -21,10 +21,10 @@ class MovieListItem extends StatefulWidget {
   final bool isAdded;
 
   @override
-  State<MovieListItem> createState() => _MovieListItemState();
+  State<MovieTile> createState() => _MovieTile();
 }
 
-class _MovieListItemState extends State<MovieListItem> {
+class _MovieTile extends State<MovieTile> {
   late bool _isAdded;
 
   @override
@@ -52,6 +52,8 @@ class _MovieListItemState extends State<MovieListItem> {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
     return InkWell(
       onTap: () {
         Navigator.push(
@@ -69,19 +71,19 @@ class _MovieListItemState extends State<MovieListItem> {
       },
       child: Container(
         margin: const EdgeInsets.symmetric(
-          horizontal: 20.0,
-          vertical: 5.0,
+          horizontal: Insets.m,
+          vertical: Insets.xxs,
         ),
         child: Card(
-          color: Theme.of(context).primaryColor,
-          shadowColor: Theme.of(context).primaryColorLight,
+          color: theme.primaryColor,
+          shadowColor: theme.primaryColorLight,
           elevation: 10.0,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              MovieListItemPoster(imageUrl: widget.movie.posterPath),
+              MoviePoster(imagePath: widget.movie.posterPath),
               Expanded(
-                child: MovieListItemInfo(
+                child: MovieTileInfo(
                   movie: widget.movie,
                   isAdded: _isAdded,
                   addMovieToWatchList: _addMovieToWatchList,

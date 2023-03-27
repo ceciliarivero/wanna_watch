@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../data/models/movie.dart';
-import '../data/services/movies_repository.dart';
+import '../../data/models/movie.dart';
+import '../../data/repositories/movies_repository.dart';
 
-import '../widgets/movie_list/movie_list.dart';
-import '../widgets/movie_list/watch_list.dart';
+import '../../shared_widgets/bottom_nav_bar.dart';
+import './widgets/movie_list.dart';
+import './widgets/watch_list.dart';
 
 class MoviesScreen extends StatefulWidget {
   const MoviesScreen({
@@ -31,7 +32,7 @@ class _MoviesState extends State<MoviesScreen> {
     _moviesFuture = widget.moviesRepository.getMovies();
   }
 
-  void _onItemTapped(int index) {
+  void _onTap(int index) {
     setState(() {
       _selectedScreenIndex = index;
       _watchListFuture = widget.moviesRepository.getMoviesFromWatchList();
@@ -41,6 +42,8 @@ class _MoviesState extends State<MoviesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
     final List<Widget> screenOptions = <Widget>[
       SafeArea(
         child: MovieList(
@@ -59,32 +62,16 @@ class _MoviesState extends State<MoviesScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: theme.primaryColor,
         title: const Text('Wanna Watch'),
         centerTitle: true,
       ),
       body: Center(
         child: screenOptions.elementAt(_selectedScreenIndex),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.movie),
-            label: 'Movies',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: 'My list',
-          ),
-        ],
-        currentIndex: _selectedScreenIndex,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Theme.of(context).secondaryHeaderColor,
-        onTap: _onItemTapped,
-        backgroundColor: Theme.of(context).primaryColorDark,
-        unselectedFontSize: 15.0,
-        selectedFontSize: 15.0,
-        iconSize: 30,
+      bottomNavigationBar: BottomNavBar(
+        selectedScreenIndex: _selectedScreenIndex,
+        onTap: _onTap,
       ),
     );
   }

@@ -1,7 +1,7 @@
-import './db_client.dart';
-import '../models/movie.dart';
+import '../apis/db_client.dart';
+import '../apis/movies_api_client.dart';
 import '../mappers/movie_to_watch_request_body.dart';
-import './movies_api_client.dart';
+import '../models/movie.dart';
 
 class MoviesRepository {
   MoviesRepository(

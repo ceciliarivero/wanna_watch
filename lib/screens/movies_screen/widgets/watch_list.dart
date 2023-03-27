@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../data/models/movie.dart';
-import '../../data/services/movies_repository.dart';
+import '../../../data/models/movie.dart';
+import '../../../data/repositories/movies_repository.dart';
 
-import './movie_list_item.dart';
-import '../shared/error_message.dart';
-import '../shared/spinner.dart';
+import '../../../shared_widgets/error_message.dart';
+import '../../../shared_widgets/spinner.dart';
+import './movie_tile/movie_tile.dart';
 
 class WatchList extends StatefulWidget {
   const WatchList({
@@ -60,7 +60,7 @@ class _WatchListState extends State<WatchList> {
           child: ListView.builder(
             itemCount: watchList.length,
             itemBuilder: (ctx, index) {
-              return MovieListItem(
+              return MovieTile(
                 movie: watchList[index],
                 moviesRepository: widget.moviesRepository,
                 isAdded: true,

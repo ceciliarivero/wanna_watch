@@ -8,7 +8,6 @@ class MoviesTheme {
     fontFamily: 'NotoSans',
     textTheme: MoviesTextTheme().regular,
   );
-
 }
 
 class MoviesTextTheme {
@@ -31,17 +30,17 @@ class MoviesTextTheme {
       color: Colors.white70,
     ),
     bodyLarge: TextStyle(
-      fontSize: 14.0,
+      fontSize: 18.0,
       height: 2.0,
       color: Colors.white70,
     ),
     bodyMedium: TextStyle(
-      fontSize: 12.0,
+      fontSize: 16.0,
       height: 1.5,
       color: Colors.white70,
     ),
     bodySmall: TextStyle(
-      fontSize: 10.0,
+      fontSize: 14.0,
       height: 1.5,
       color: Colors.white70,
     ),

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../data/models/movie.dart';
+import '../../../../data/models/movie.dart';
 
-class MovieListItemInfo extends StatelessWidget {
-  const MovieListItemInfo({
+import './add_checkbox.dart';
+
+import '../../../../themes/design_system.dart';
+
+class MovieTileInfo extends StatelessWidget {
+  const MovieTileInfo({
     Key? key,
     required this.movie,
     required this.isAdded,
@@ -18,9 +22,11 @@ class MovieListItemInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
     return SizedBox(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0),
+        padding: const EdgeInsets.symmetric(horizontal: Insets.s),
         child: Row(
           children: [
             Expanded(
@@ -33,25 +39,25 @@ class MovieListItemInfo extends StatelessWidget {
                     movie.title,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.titleSmall,
+                    style: theme.textTheme.titleMedium,
                   ),
                   const SizedBox(
-                    height: 4,
+                    height: Insets.xxs,
                   ),
                   Text(
                     movie.releaseYear,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: theme.textTheme.bodyMedium,
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: Insets.xxs,
                   ),
                   Text(
                     movie.overview,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: theme.textTheme.bodyMedium,
                   ),
                 ],
               ),
@@ -59,18 +65,10 @@ class MovieListItemInfo extends StatelessWidget {
             Container(
               width: 35,
               alignment: Alignment.centerRight,
-              child: IconButton(
-                onPressed: () {
-                  isAdded
-                      ? removeMovieFromWatchList(movie.id)
-                      : addMovieToWatchList(movie);
-                },
-                icon: Icon(
-                  isAdded ? Icons.check_circle : Icons.check_circle_outline,
-                  color: isAdded
-                      ? Theme.of(context).primaryColorLight
-                      : Theme.of(context).canvasColor,
-                ),
+              child: AddCheckbox(
+                isAdded: isAdded,
+                add: () => addMovieToWatchList(movie),
+                remove: () => removeMovieFromWatchList(movie.id),
               ),
             ),
           ],

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../data/models/movie.dart';
-import '../../data/services/movies_repository.dart';
+import '../../../data/models/movie.dart';
+import '../../../data/repositories/movies_repository.dart';
 
-import './movie_list_item.dart';
-import '../shared/error_message.dart';
-import '../shared/spinner.dart';
+import '../../../shared_widgets/error_message.dart';
+import '../../../shared_widgets/spinner.dart';
+import './movie_tile/movie_tile.dart';
 
 class MovieList extends StatelessWidget {
   const MovieList({
@@ -52,7 +52,7 @@ class MovieList extends StatelessWidget {
                   .where((element) => element.id == movies[index].id)
                   .isNotEmpty;
 
-              return MovieListItem(
+              return MovieTile(
                 movie: movies[index],
                 moviesRepository: moviesRepository,
                 isAdded: isAdded,

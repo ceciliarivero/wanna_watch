@@ -1,16 +1,16 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import './firebase_options.dart';
 
-import './data/services/db_client.dart';
-import './data/services/movies_api_client.dart';
-import './data/services/movies_repository.dart';
+import './data/apis/db_client.dart';
+import './data/apis/movies_api_client.dart';
+import './data/repositories/movies_repository.dart';
 
-import './screens/movies_screen.dart';
+import './screens/movies_screen/movies_screen.dart';
 
 import './themes/movies_theme.dart';
 
