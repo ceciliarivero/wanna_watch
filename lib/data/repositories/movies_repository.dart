@@ -1,3 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dio/dio.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+import '../../firebase_options.dart';
+
 import '../apis/db_api_client.dart';
 import '../apis/movies_api_client.dart';
 import '../mappers/movie_to_watch_request_body.dart';
@@ -50,4 +57,27 @@ class MoviesRepository {
 
     return response.map((r) => Movie.fromMovieToWatchResponse(r)).toList();
   }
+}
+
+Future<MoviesRepository> initMoviesRepository() async {
+  await dotenv.load(fileName: ".env");
+  final moviesApiBaseURL = dotenv.env['MOVIES_API_BASE_URL'];
+
+  // Movies Api
+  final moviesDio = Dio(
+    BaseOptions(baseUrl: moviesApiBaseURL ?? ''),
+  );
+
+  final moviesApiClient = MoviesApiClient(moviesDio);
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  // Watch List DB
+  final FirebaseFirestore dbInstance = FirebaseFirestore.instance;
+
+  final dbApiClient = DBApiClient(dbInstance);
+
+  return MoviesRepository(moviesApiClient, dbApiClient);
 }
