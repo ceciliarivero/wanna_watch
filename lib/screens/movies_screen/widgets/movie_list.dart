@@ -26,7 +26,7 @@ class MovieList extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
         if (snapshot.hasError) {
           return const ErrorMessage(
-            text: 'Something went wrong, please try again later.',
+            text: 'Something went wrong\nPlease try again later',
           );
         }
 

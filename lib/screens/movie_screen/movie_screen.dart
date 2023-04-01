@@ -63,7 +63,7 @@ class _MovieDetailsState extends State<MovieScreen> {
           ),
           body: snapshot.hasError
               ? const ErrorMessage(
-                  text: 'Something went wrong, please try again later.',
+                  text: 'Something went wrong\nPlease try again later',
                 )
               : body,
         );

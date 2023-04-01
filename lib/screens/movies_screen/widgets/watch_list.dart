@@ -43,7 +43,7 @@ class _WatchListState extends State<WatchList> {
 
         if (snapshot.hasError) {
           return const ErrorMessage(
-            text: 'Something went wrong, please try again later.',
+            text: 'Something went wrong\nPlease try again later',
           );
         }
 
