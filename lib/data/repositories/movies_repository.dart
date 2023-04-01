@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -61,14 +60,9 @@ class MoviesRepository {
 
 Future<MoviesRepository> initMoviesRepository() async {
   await dotenv.load(fileName: ".env");
-  final moviesApiBaseURL = dotenv.env['MOVIES_API_BASE_URL'];
 
   // Movies Api
-  final moviesDio = Dio(
-    BaseOptions(baseUrl: moviesApiBaseURL ?? ''),
-  );
-
-  final moviesApiClient = MoviesApiClient(moviesDio);
+  final moviesApiClient = MoviesApiClient();
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
