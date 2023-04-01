@@ -4,12 +4,16 @@ This project is an app built using Flutter.
 
 It was built as an assignment of the "Flutter Devcamp Womens Special 2023".
 
-The purpose of it is to display movies fetched from a public API, and save movies to watch later in a Firestore database.
+The purpose of it is to display movies fetched from the public API [The Movie DB](https://www.themoviedb.org/), and save movies to watch later in a Firestore database.
 
 ## Getting Started
 
-You'll need to create a project in Firebase, use Firestore as database and follow the steps to configure Firestore in the project.
-You'll also need to create an `.env` file with the needed enviroment variables. You can find the needed variables in `.env.example`.
+You'll need to create a `.env` file with the needed environment variables. You can find the needed variables in `.env.example`.
+
+You'll also need to create an account in The Movie DB in order to get an API key and use it as a value for `MOVIES_API_KEY` in the `.env` file.
+
+Finally, you'll need to create a project in Firebase, use Firestore as database and follow the steps to configure Firebase in the project (this includes the step of adding to the project the `firebase_options.dart` file provided by Firebase).
+Once that's done, you'll need to create a collection and use the collection name as a value for `WATCH_LIST_COLLECTION` in the `.env` file.
 
 To start the app run:
 
